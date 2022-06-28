@@ -20,6 +20,9 @@ CREATE TABLE channel_users_mappings (
   user_id INT REFERENCES users (id)
 );
 
+-- To speed up the fetch
+CREATE INDEX ON channel_users_mappings (user_id, channel_id);
+
 CREATE TABLE messages_initial_data (
   channel_id INT,
   message TEXT

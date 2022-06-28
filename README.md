@@ -29,6 +29,10 @@ While the benchmark is run, concurrently 10k messages are inserted per second.
 This can be done by running the `insert_messages.sh` script. NOTE that for this,
 there needs to be 10k messages first in the `messages_initial_data`.
 
+## Running the benchmarks
+
+1. Use the `config.subscription.yaml` in this repository to use the config for subscription benchmarks in [graphql-bench](https://github.com/hasura/graphql-bench).
+
 ## Benchmarks results
 
 The benchmarks were run on two different setups:

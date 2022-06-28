@@ -1,0 +1,17 @@
+url: '<YOUR instance''s GRAPHQL URL>'
+db_connection_string: '<YOUR DB connection>'
+config:
+  label: StreamMessages
+  max_connections: 1300
+  connections_per_second: 100
+  insert_payload_data: true
+  query: |
+    subscription ($id_range: bigint!, $userid_range: Int!) {
+      messages_stream(cursor: {initial_value: {id: $id_range}}, batch_size: 10, where: {channel: {channel_users: {user_id: {_eq: $userid_range}}}}) {
+        message
+
+      }
+    }
+  variables:
+    id_range: {start: 1, end: 10000}
+    userid_range: {start: 1, end: 10000}
