@@ -32,6 +32,18 @@ there needs to be 10k messages first in the `messages_initial_data`.
 ## Running the benchmarks
 
 1. Use the [`config.subscription.yaml`](https://github.com/hasura/streaming-subscriptions-benchmark/blob/main/insert_messages.sh) in this repository to use the config for subscription benchmarks in [graphql-bench](https://github.com/hasura/graphql-bench).
+2. The query used to run the benchmarks is 
+
+```graphql
+    subscription ($id_range: bigint!, $userid_range: Int!) {
+      messages_stream(cursor: {initial_value: {id: $id_range}}, batch_size: 10, where: {channel: {channel_users: {user_id: {_eq: $userid_range}}}}) {
+        message
+
+      }
+    }
+```
+
+The above query simulates the authorization part in the `where` clause, generally this would be abstracted from the role by having this in the select permission. This is done here this way because we will be able to use the `graphql-bench` out of the box, with a range of values of `userid_range`.
 
 ## Benchmarks results
 
