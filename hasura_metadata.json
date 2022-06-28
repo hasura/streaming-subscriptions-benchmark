@@ -1,0 +1,92 @@
+{
+  "resource_version": 15,
+  "metadata": {
+    "version": 3,
+    "sources": [
+      {
+        "name": "default",
+        "kind": "postgres",
+        "tables": [
+          {
+            "table": {
+              "schema": "public",
+              "name": "channel_users_mappings"
+            },
+            "object_relationships": [
+              {
+                "name": "channel",
+                "using": {
+                  "foreign_key_constraint_on": "channel_id"
+                }
+              },
+              {
+                "name": "user",
+                "using": {
+                  "foreign_key_constraint_on": "user_id"
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "channels"
+            },
+            "array_relationships": [
+              {
+                "name": "channel_users",
+                "using": {
+                  "foreign_key_constraint_on": {
+                    "column": "channel_id",
+                    "table": {
+                      "schema": "public",
+                      "name": "channel_users_mappings"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "messages"
+            },
+            "object_relationships": [
+              {
+                "name": "channel",
+                "using": {
+                  "manual_configuration": {
+                    "remote_table": {
+                      "schema": "public",
+                      "name": "channels"
+                    },
+                    "insertion_order": null,
+                    "column_mapping": {
+                      "channel_id": "id"
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "table": {
+              "schema": "public",
+              "name": "users"
+            }
+          }
+        ],
+        "configuration": {
+          "connection_info": {
+            "use_prepared_statements": false,
+              "database_url": {
+                  "from_env": "<YOUR_POSTGRES_DB_URL>"
+              },
+            "isolation_level": "read-committed"
+          }
+        }
+      }
+    ]
+  }
+}
