@@ -37,7 +37,7 @@ there needs to be 10k messages first in the `messages_initial_data`.
 
 The benchmarks were run on two different setups:
 
-1. Single 8XCPU and 32GB RAM (t3.2xlarge instance) and Postgres (2xCPU and 8 GB RAM)
+1. Single 8XCPU and 32GB RAM (t3.2xlarge instance) and Postgres (2xCPU and 8 GB RAM) 
 
 1300 concurrent streaming subscriptions
 
@@ -53,4 +53,14 @@ CPU load average - 15 %
 
 2. Five 4xCPU and 8 GB RAM using App runner and Postgres (16xCPU and 32GB RAM)
 
--- TODO: include images here
+20000 concurrent streaming subscriptions
+
+##### Hasura CPU utilization
+
+![CPU Utilization](cpu_utlization_five_instances.png)
+
+##### DB CPU utilization
+![DB CPU Utilization](massive_DB_CPU_utlization.png)
+
+##### DB Connections
+![DB connections](db_connections_massive_db.png)
