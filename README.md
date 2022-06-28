@@ -21,6 +21,10 @@ These tables's DDL SQL can be found at `schema_setup.sql`.
 
 If you'd like to seed the tables with some random data, then please use the `data_setup.sql`.
 
+After creating the tables, the hasura metadata for the setup can be found at
+`hasura_metadata.json` and just by adding the connection string for your database
+the metdata can be imported and then the benchmarks can be run.
+
 While the benchmark is run, concurrently 10k messages are inserted per second.
 This can be done by running the `insert_messages.sh` script. NOTE that for this,
 there needs to be 10k messages first in the `messages_initial_data`.
